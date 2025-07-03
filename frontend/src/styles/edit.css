@@ -1,0 +1,67 @@
+/* Matching elegant edit form styles */
+
+.container {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f7ff;
+    border-radius: 16px;
+  }
+  
+  h2 {
+    font-weight: 700;
+    color: #111827;
+  }
+  
+  label.form-label {
+    font-weight: 600;
+    color: #4b5563;
+  }
+  
+  input.form-control,
+  textarea.form-control {
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #e5e7eb;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  input.form-control:focus,
+  textarea.form-control:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 0.2rem rgba(167, 139, 250, 0.3);
+  }
+  
+  .btn-light {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  
+  .btn-light:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .btn-purple {
+    background-color: #a78bfa;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 8px 18px;
+  }
+  
+  .btn-purple:hover {
+    background-color: #8b5cf6;
+  }
+  
+  .btn-danger {
+    background-color: #ef4444;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+  }
+  
+  .btn-danger:hover {
+    background-color: #dc2626;
+  }
+  

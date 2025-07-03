@@ -1,0 +1,26 @@
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f5f5fc;
+  margin: 0;
+}
+.btn,
+.form-control {
+  border-radius: 12px !important;
+}
+.custom-btn-primary {
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+}
+.custom-btn-primary:hover {
+  background-color: #7c3aed;
+}
+.custom-btn-outline {
+  border: 1px solid #8b5cf6;
+  color: #8b5cf6;
+}
+.custom-btn-outline:hover {
+  background-color: #8b5cf6;
+  color: white;
+}
