@@ -2,6 +2,7 @@ require("dotenv").config(); // ✅ Load .env before using env vars
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
@@ -41,15 +42,23 @@ app.use("/api/blogs", blogRoutes);
 // ✅ Serve React build in production (single-service deploy)
 if (process.env.NODE_ENV === "production") {
   const clientBuildPath = path.join(__dirname, "..", "frontend", "build");
-  app.use(express.static(clientBuildPath));
 
-  app.get("*", (req, res) => {
-    // Let API & uploads routes behave normally
-    if (req.path.startsWith("/api") || req.path.startsWith("/uploads")) {
-      return res.status(404).json({ message: "Not found" });
-    }
-    return res.sendFile(path.join(clientBuildPath, "index.html"));
-  });
+  // In split deploys (Vercel frontend + Render backend), this folder won't exist.
+  if (fs.existsSync(clientBuildPath)) {
+    app.use(express.static(clientBuildPath));
+
+    app.get("*", (req, res) => {
+      // Let API & uploads routes behave normally
+      if (req.path.startsWith("/api") || req.path.startsWith("/uploads")) {
+        return res.status(404).json({ message: "Not found" });
+      }
+      return res.sendFile(path.join(clientBuildPath, "index.html"));
+    });
+  } else {
+    console.warn(
+      `⚠️ Frontend build not found at ${clientBuildPath}. Skipping static frontend serving (expected for split deploy).`
+    );
+  }
 }
 
 const PORT = process.env.PORT || 5000;
