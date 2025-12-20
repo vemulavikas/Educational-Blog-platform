@@ -1,2 +1,5 @@
-# EduBlog4 Backend
-Deployed on Render
+# Backend
+
+Express API for the Educational Blog Platform.
+
+See repo root README for local setup and deployment.

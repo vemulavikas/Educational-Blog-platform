@@ -9,6 +9,7 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "educational-blog-platform": "file:..",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^6.15.0",

@@ -1,7 +1,13 @@
-# Node modules
-EDUNLOG4/
+# Node / React artifacts
+node_modules/
 frontend/node_modules/
 backend/node_modules/
+frontend/build/
+
+# Local uploads (optional)
+# If you want uploads committed, remove this.
+backend/uploads/*
+!backend/uploads/.gitkeep
 
 # Logs
 *.log

@@ -1,43 +1,46 @@
-# EduBlog4 Frontend
-Deployed on Netlify or Vercel
-Educational-Blog-platform
-📚 Educational Blog - MERN Stack Project
-An Educational Blog Platform built using the MERN Stack (MongoDB, Express, React, Node.js) that allows users to register, log in, write blogs, edit them, and manage their profiles. This project is designed as part of a B.Tech curriculum at KITS Warangal.
+# Educational Blog Platform (MERN)
 
-🚀 Features
-🔐 User Authentication (Register/Login)
-✍️ Create, Edit, and Delete Blogs
-🧑‍💼 Profile Management
-📚 Blog Feed with Individual Blog View
-🔍 Responsive Design using Bootstrap
-🌐 Frontend Routing with React Router
-🛠️ Tech Stack
-Layer	Technology
-Frontend	React, React Router, Bootstrap
-Backend	Node.js, Express
-Database	MongoDB
-Authentication	JSON Web Token (JWT)
-📂 Folder Structure
-educational-blog/ ├── backend/ │ ├── controllers/ │ ├── models/ │ ├── routes/ │ ├── .env │ └── server.js ├── frontend/ │ ├── src/ │ │ ├── components/ │ │ ├── pages/ │ │ ├── App.js │ │ └── index.js │ └── public/ ├── package.json (for both client & server)
+An Educational Blog Platform built using MongoDB, Express, React, and Node.js.
 
-yaml Copy Edit
+## Local setup
 
-⚙️ Installation & Setup
-1. Clone the repository
-git clone https://github.com/yourusername/educational-blog.git
-cd educational-blog
-2. Set up the backend
-bash
-Copy
-Edit
-cd backend
-npm install
-# Create a .env file and add your environment variables
-npm start
-3. Set up the frontend
-bash
-Copy
-Edit
-cd ../frontend
-npm install
-npm start
+1) Backend env
+
+- Copy [backend/.env.example](backend/.env.example) to `backend/.env`
+- Set at least: `MONGO_URI`, `JWT_SECRET`
+
+2) Install dependencies
+
+- From repo root: `npm run install:all`
+
+3) Run
+
+- Backend: `npm --prefix backend start`
+- Frontend (dev): `npm --prefix frontend start`
+
+Frontend dev server calls `http://localhost:5000` by default.
+
+## Deployment options
+
+### Option A: Single-service deploy on Render (recommended)
+
+This repo is configured so the Express backend serves the React build in production.
+
+- Render Web Service settings:
+	- Build Command: `npm run build`
+	- Start Command: `npm start`
+- Environment variables (Render):
+	- `MONGO_URI` (MongoDB Atlas connection string)
+	- `JWT_SECRET`
+	- `CORS_ORIGIN` (set to your Render URL, or `*` while testing)
+	- `NODE_ENV=production`
+
+### Option B: Split deploy (Frontend on Vercel/Netlify + Backend on Render)
+
+- Backend (Render): deploy the `backend` folder
+	- Build: `npm install`
+	- Start: `npm start`
+	- Env: `MONGO_URI`, `JWT_SECRET`, `CORS_ORIGIN=https://<your-frontend-domain>`
+
+- Frontend (Vercel/Netlify): deploy the `frontend` folder
+	- Set env: `REACT_APP_API_URL=https://<your-backend-domain>/api`
