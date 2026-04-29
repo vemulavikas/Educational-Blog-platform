@@ -103,7 +103,7 @@ const EditBlog = () => {
         />
         {form.image && !file && (
           <img
-            src={`http://localhost:5000${form.image}`}
+            src={`${form.image.startsWith('/') ? form.image : '/' + form.image}`}
             alt="Current"
             className="mb-3"
             style={{ maxWidth: "100%", maxHeight: 200, borderRadius: 8 }}

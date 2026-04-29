@@ -58,7 +58,7 @@ const BlogDetail = () => {
 
       <div className="text-center mb-4">
         <img
-          src={`http://localhost:5000${blog.image}`}
+          src={`${blog.image.startsWith('/') ? blog.image : '/' + blog.image}`}
           alt={blog.title}
           className="img-fluid rounded"
           style={{ borderRadius: "20px", maxHeight: "400px", objectFit: "cover" }}
