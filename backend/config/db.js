@@ -9,10 +9,17 @@ const connectDB = async () => {
       );
     }
 
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 10000,
+    });
     console.log("✅ MongoDB Connected...");
   } catch (error) {
-    console.error("❌ MongoDB Connection Failed:", error);
+    console.error("❌ MongoDB Connection Failed:", error.message || error);
+    console.error(
+      "Hint: check Atlas Network Access (IP whitelist), credentials, cluster status, and MONGO_URI format."
+    );
     process.exit(1);
   }
 };
