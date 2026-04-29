@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { loginUser, registerUser } from "../services/api";
 import "../styles/auth.css";
 
 const AuthPage = () => {
@@ -21,11 +21,11 @@ const AuthPage = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await loginUser({
         email: formData.email,
         password: formData.password,
       });
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.token);
       window.location.href = "/dashboard";
     } catch (err) {
       const msg = err.response?.data?.message || "Login failed";
@@ -42,12 +42,12 @@ const AuthPage = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
+      const res = await registerUser({
         name: formData.name,
         email: formData.email,
         password: formData.password,
       });
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.token);
       window.location.href = "/dashboard";
     } catch (err) {
       console.error("Register error:", err);
